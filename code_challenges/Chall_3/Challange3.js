@@ -61,10 +61,9 @@ In this alphabetization, capital letters come before lower case letters.
 For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 ------------------------------------------------------------------------------------------------ */
 
-const alphabetize = (arr) => {
+const alphabetize = (arr) => { arr.sort();
 
-    
-  
+
 };
 
 describe('Testing challenge 3', () => {
@@ -77,16 +76,27 @@ describe('Testing challenge 3', () => {
   
 
 
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
 Write a function named sortByLength that takes in an array of strings and returns the same array, with the strings sorted by their length, lowest to highest.
 ------------------------------------------------------------------------------------------------ */
 
-const sortByLength = (arr) => {
-  // Solution code here...
-};
+const sortByLength = (arr) =>  arr.sort((a,b) => a.length - b.length); 
+  
+
+describe('Testing challenge 4', () => {
+    test('It should sort strings by length', () => {
+      const ans = sortByLength(['alphabet', 'Zebra', 'Alphabet', 'carrot']);
+      expect(ans.slice(0,2)).toStrictEqual(['Zebra', 'carrot']);
+      expect(ans.slice(2,4)).toEqual(expect.arrayContaining(['Alphabet', 'alphabet']));
+      expect(sortByLength(['a', 'bc', ''])).toStrictEqual(['', 'a', 'bc']);
+      expect(sortByLength(['a'])).toStrictEqual(['a']);
+      expect(sortByLength([])).toStrictEqual([]);
+    });
+  });
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 - Stretch Goal
@@ -233,17 +243,6 @@ Run your tests from the console: jest challenges-03.test.js
 ------------------------------------------------------------------------------------------------ */
 
 
-
-describe('Testing challenge 4', () => {
-  test('It should sort strings by length', () => {
-    const ans = sortByLength(['alphabet', 'Zebra', 'Alphabet', 'carrot']);
-    expect(ans.slice(0,2)).toStrictEqual(['Zebra', 'carrot']);
-    expect(ans.slice(2,4)).toEqual(expect.arrayContaining(['Alphabet', 'alphabet']));
-    expect(sortByLength(['a', 'bc', ''])).toStrictEqual(['', 'a', 'bc']);
-    expect(sortByLength(['a'])).toStrictEqual(['a']);
-    expect(sortByLength([])).toStrictEqual([]);
-  });
-});
 
 xdescribe('Testing challenge 5', () => {
   test('It should alphabetize without regard to capitalization', () => {
