@@ -1,6 +1,6 @@
 'use strict';
 
-/* ------------------------------------------------------------------------------------------------ test, test , test , test 
+/* ------------------------------------------------------------------------------------------------ test, test , test , test, test, test, test, test
 CHALLENGE 1
 
 Write a function named greeting that takes in a string and returns the string in all uppercase letters.
