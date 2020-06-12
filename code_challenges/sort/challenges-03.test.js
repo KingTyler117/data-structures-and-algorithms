@@ -22,15 +22,6 @@ const changeAllClassNames = () => {
 }
 
 
-describe('Testing challenge 1', () => {
-  test('It should add a class of fruit to all the list items', () => {
-    changeAllClassNames();
-
-    expect($('li.apple').hasClass('fruit')).toBe(true);
-    expect($('li.orange').hasClass('fruit')).toBe(true);
-  })
-})
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -39,17 +30,6 @@ Write a function named sortBackwards that takes in an array of numbers and retur
 
 const sortBackwards = (arr) => arr.sort ((a,b)=> b-a);
 
-
-describe('Testing challenge 2', () => {
-  test('It should sort high-to-low the numbers in an array', () => {
-    const nums = [3,4,5,6,7];
-    expect(sortBackwards(nums)).toStrictEqual([7,6,5,4,3]);
-    expect(sortBackwards([3,2,1])).toStrictEqual([3,2,1]);
-    expect(sortBackwards([12,20,3])).toStrictEqual([20, 12, 3]);
-    expect(sortBackwards([])).toStrictEqual([]);
-    expect(sortBackwards([1])).toStrictEqual([1]);
-  });
-});
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -73,13 +53,7 @@ const alphabetize = (arr) => {
 
 };
 
-describe('Testing challenge 3', () => {
-  test('It should sort strings alphabetically', () => {
-    expect(alphabetize(['alphabet', 'Zebra', 'Alphabet', 'carrot'])).toStrictEqual([ 'Alphabet', 'Zebra', 'alphabet', 'carrot']);
-    expect(alphabetize(['alphabet','Alphabet', 'carrot'])).toStrictEqual([ 'Alphabet', 'alphabet', 'carrot']);
-    expect(alphabetize([])).toStrictEqual([]);
-  });
-});
+
 
 
 
@@ -92,6 +66,42 @@ Write a function named sortByLength that takes in an array of strings and return
 const sortByLength = (arr) => arr.sort((a,b) => a.length - b.length);
 
 
+
+describe('Testing challenge 1', () => {
+  test('It should add a class of fruit to all the list items', () => {
+    changeAllClassNames();
+
+    expect($('li.apple').hasClass('fruit')).toBe(true);
+    expect($('li.orange').hasClass('fruit')).toBe(true);
+  })
+})
+
+
+
+describe('Testing challenge 2', () => {
+  test('It should sort high-to-low the numbers in an array', () => {
+    const nums = [3,4,5,6,7];
+    expect(sortBackwards(nums)).toStrictEqual([7,6,5,4,3]);
+    expect(sortBackwards([3,2,1])).toStrictEqual([3,2,1]);
+    expect(sortBackwards([12,20,3])).toStrictEqual([20, 12, 3]);
+    expect(sortBackwards([])).toStrictEqual([]);
+    expect(sortBackwards([1])).toStrictEqual([1]);
+  });
+});
+
+
+
+
+
+describe('Testing challenge 3', () => {
+  test('It should sort strings alphabetically', () => {
+    expect(alphabetize(['alphabet', 'Zebra', 'Alphabet', 'carrot'])).toStrictEqual([ 'Alphabet', 'Zebra', 'alphabet', 'carrot']);
+    expect(alphabetize(['alphabet','Alphabet', 'carrot'])).toStrictEqual([ 'Alphabet', 'alphabet', 'carrot']);
+    expect(alphabetize([])).toStrictEqual([]);
+  });
+});
+
+
 describe('Testing challenge 4', () => {
   test('It should sort strings by length', () => {
     const ans = sortByLength(['alphabet', 'Zebra', 'Alphabet', 'carrot']);
@@ -102,6 +112,7 @@ describe('Testing challenge 4', () => {
     expect(sortByLength([])).toStrictEqual([]);
   });
 });
+
 
 
 
