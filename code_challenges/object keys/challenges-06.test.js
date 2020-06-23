@@ -72,7 +72,7 @@ let $ = createSnippetWithJQuery(`
 const templatingWithMustache = () => {
   let newHTML = [];
 
-  characters.forEach(GOT =>{
+  characters.forEach(GOT => {
     let $temp = $('#template').html();
     let mustacheFill = Mustache.render($temp, {
       'name': GOT.name, 'spouse': GOT.spouse, 'children': GOT.character, 'house': GOT.house
@@ -94,7 +94,8 @@ Write a function named getCourseKeys that takes in the courseInfo object and ret
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
 ------------------------------------------------------------------------------------------------ */
-const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
+const courseInfo = {
+  name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks' },
   topics: ['SMACSS', 'APIs', 'NodeJS', 'SQL', 'jQuery', 'functional programming'],
   finalExam: true
 };
@@ -102,7 +103,7 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
 const getCourseKeys = () => {
   let newArr = [];
 
-  for(let property in courseInfo){
+  for (let property in courseInfo) {
     newArr.push(property);
   }
   return newArr;
@@ -118,8 +119,11 @@ Write a function named getHouses that returns a new array containing the names o
 
 const getHouses = (arr) => {
   let houses = [];
-  
 
+  for (let house of arr) {
+    houses.push(house['house']);
+  }
+  console.log(houses);
   return houses;
 
 };
@@ -137,9 +141,22 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  
+  console.log(arr, character)
+  for (let i in arr) {
+    if (arr[i]['name'] === character) {
+      if (arr[i]['children'].length !== 0 ) {
 
-};
+        return true
+      }
+      else {
+        return false
+      }
+
+    }
+
+  }
+
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 - Stretch Goal
@@ -228,14 +245,14 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return an array of the names of the houses', () => {
     expect(getHouses(characters)).toStrictEqual(['Stark', 'Arryn', 'Lannister', 'Targaryen', 'Tyrell', 'Greyjoy', 'Snow']);
     expect(getHouses(characters).length).toStrictEqual(7);
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
   });
@@ -275,6 +292,6 @@ xdescribe('Testing challenge 8', () => {
 });
 
 
-function createSnippetWithJQuery(html){
+function createSnippetWithJQuery(html) {
   return cheerio.load(html);
 }
