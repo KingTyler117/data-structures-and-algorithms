@@ -123,7 +123,6 @@ const getHouses = (arr) => {
   for (let house of arr) {
     houses.push(house['house']);
   }
-  console.log(houses);
   return houses;
 
 };
