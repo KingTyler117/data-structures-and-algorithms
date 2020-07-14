@@ -11,22 +11,18 @@ any other route should return status of 404
 const createServer = () => {
   const express = require('express');
   const app = express();
-
   app.get('/', function (req, res) {
     res.status(200).send('ok');
   });
-
   app.delete('/things/1', function (req, res) {
     res.sendStatus(405);
   });
-
   var server = app.listen(3000, function () {
     var port = server.address().port;
     console.log('Example app listening at port', port);
   });
   return server;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -113,8 +109,15 @@ let starWarsData = [{
 }];
 
 let biggerThanLuke = (arr) => {
-  // Solution code here...
+
+  return arr.reduce((acc, val) => {
+    if (+val.mass > +arr[0].mass) {
+      acc.push(val.name);
+    }
+    return acc;
+  }, []).join(' - ');
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -131,8 +134,34 @@ This data could be sorted by name or price.
 ------------------------------------------------------------------------------------------------ */
 
 const sortBy = (property, arr) => {
-  // Solution code here...
+
+  if(property === 'name'){
+    return arr.sort(compareName)
+  }
+  else{
+    return arr.sort(comparePrice)
+  }
 };
+function compareName(a,b){
+  let comparison = 0;
+  if(a.name>b.name){
+    comparison =1;
+  }else if (a.name<b.name){
+    comparison = -1;
+  }
+  return comparison;
+}
+function comparePrice(a,b){
+  let comparison = 0;
+  if(a.price>b.price){
+    comparison =1;
+  }else if (a.price<b.price){
+    comparison = -1;
+  }
+  return comparison;
+}
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 - Stretch Goal
@@ -184,7 +213,7 @@ Run your tests from the console: jest challenge-14.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-xdescribe('Testing challenge 1', function () {
+describe('Testing challenge 1', function () {
 
   const request = require('supertest');
 
@@ -226,14 +255,14 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return only characters that are bigger than Luke', () => {
     expect(biggerThanLuke(starWarsData)).toStrictEqual('Darth Vader - Pex Kylar');
     expect(biggerThanLuke([])).toStrictEqual('');
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should sort items by a price', () => {
 
     expect(sortBy('price', [
